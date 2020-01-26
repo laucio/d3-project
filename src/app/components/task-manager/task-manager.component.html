@@ -1,0 +1,41 @@
+<div class="container-fluid m-4 task-manager">
+    <div class="row m2">
+      <div class="col-sm-12 text-center">
+        <button type="button" class="btn btn-primary btn-lg" (click)="openCreateTaskModal()">Create Task</button>
+      </div>
+    </div>
+    <div class="row m-2">
+      <div class="col-sm">
+        Planning
+      </div>
+      <div class="col-sm">
+        InProgress
+      </div>
+      <div class="col-sm">
+        Completed
+      </div>
+    </div>
+    <div class="row sm-2">
+      <div class="col-sm">
+        <ul style="list-style-type:none;">
+          <li *ngFor="let t of planningTasks">
+            <app-task [data]="t" (deleteTask)="deleteTaskProcess($event)"></app-task>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm">
+        <ul style="list-style-type:none;">
+          <li *ngFor="let t of inProgressTasks">
+            <app-task [data]="t" (deleteTask)="deleteTaskProcess($event)"></app-task>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm">
+        <ul style="list-style-type:none;">
+          <li *ngFor="let t of completedTasks">
+            <app-task [data]="t" (deleteTask)="deleteTaskProcess($event)"></app-task>
+          </li>
+        </ul>
+      </div>
+    </div>
+</div>
