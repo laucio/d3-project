@@ -1,4 +1,4 @@
-<div class="card border-success" style="width: 18rem;">
+<div class="card border-success mt-2" style="width: 18rem;">
   <div class="card-header bg-transparent border-success">{{data.name}}<div class="float-right pointer" (click)="deleteTask()">BU </div>
   </div>
     <div class="card-body">
@@ -6,7 +6,7 @@
       <p class="card-text">Estimate: {{data.estimate}}</p>
       <div class="row">
         <div class="col-7"><p class="card-text">State: {{data.state | taskStates}}</p></div>
-        <div class="col-5"><a href="#" class="btn btn-primary btn-sm w-80">Change State</a></div>
+        <div class="col-5"><button class="btn btn-primary btn-sm w-80" (click)="changeStateClicked()">Change State</button></div>
       </div>
     </div>
 </div>

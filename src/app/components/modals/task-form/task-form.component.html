@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Editar Tarea</h1>
+<div mat-dialog-content>
+  <div class="card border-success" style="width: 18rem;">
+    <div class="card-header bg-transparent border-success">{{data.name}}
+    </div>
+      <div class="card-body">
+        <mat-form-field>
+          <input matInput [(ngModel)]="data.description" class="card-text">{{data.description}}
+          <input matInput [(ngModel)]="data.state" class="card-text">{{data.state}}
+          <input matInput [(ngModel)]="data.estimate" class="card-text">{{data.estimate}}
+        </mat-form-field>
+      </div>
+</div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

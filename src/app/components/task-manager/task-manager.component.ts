@@ -40,7 +40,7 @@ export class TaskManagerComponent implements OnInit {
   createTask(task: Task) {
 
   }
-  openCreateTaskModal() {
+  openEditTaskModal() {
 
   }
   getAmountEstimateHours(state: number) {
