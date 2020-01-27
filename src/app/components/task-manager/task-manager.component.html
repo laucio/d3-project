@@ -28,21 +28,21 @@
       <div class="col-sm">
         <ul class="tasklist">
           <li *ngFor="let t of planningTasks">
-            <app-task [data]="t" (deleteTask)="deleteTaskProcess($event)"></app-task>
+            <app-task [data]="t" (deleteTask)="deleteTaskProcess($event)" (updateTasksView)="updateTasks()"></app-task>
           </li>
         </ul>
       </div>
       <div class="col-sm">
         <ul class="tasklist">
           <li *ngFor="let t of inProgressTasks">
-            <app-task [data]="t" (deleteTask)="deleteTaskProcess($event)"></app-task>
+            <app-task [data]="t" (deleteTask)="deleteTaskProcess($event)" (updateTasksView)="updateTasks()"></app-task>
           </li>
         </ul>
       </div>
       <div class="col-sm">
         <ul class="tasklist">
           <li *ngFor="let t of completedTasks">
-            <app-task [data]="t" (deleteTask)="deleteTaskProcess($event)"></app-task>
+            <app-task [data]="t" (deleteTask)="deleteTaskProcess($event)" (updateTasksView)="updateTasks()"></app-task>
           </li>
         </ul>
       </div>
