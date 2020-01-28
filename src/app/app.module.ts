@@ -12,6 +12,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ChangeStateModal } from "./components/modals/change-state-modal/change-state-modal.component";
 import { NewTaskModal } from "./components/modals/new-task-modal/new-task-modal.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
     BrowserAnimationsModule,
     FormsModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

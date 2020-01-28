@@ -4,6 +4,7 @@ import { TaskService } from "../../services/task.service";
 import { ResponseErrors } from "../../constants/error";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ChangeStateModal } from "../modals/change-state-modal/change-state-modal.component";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-task",
@@ -11,6 +12,7 @@ import { ChangeStateModal } from "../modals/change-state-modal/change-state-moda
   styleUrls: ["./task.component.css"]
 })
 export class TaskComponent implements OnInit {
+  faTrashAlt = faTrashAlt;
   @Input() data: Task;
   @Output() deleteTask = new EventEmitter<Task>();
   @Output() updateTasksView = new EventEmitter<boolean>();

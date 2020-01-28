@@ -1,11 +1,11 @@
 <div class="card border-success mt-2" style="width: 18rem;">
   <div class="card-header bg-transparent border-success">
     {{ data.name }}
-    <!-- <fa-icon
-      [icon]="faCoffee"
+    <fa-icon
+      [icon]="faTrashAlt"
       class="float-right pointer red-hover"
-      (click)="deleteTask()"
-    ></fa-icon> -->
+      (click)="deleteTaskClicked()"
+    ></fa-icon>
   </div>
   <div class="card-body">
     <p class="card-text">{{ data.description }}</p>

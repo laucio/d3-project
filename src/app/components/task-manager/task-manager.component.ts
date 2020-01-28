@@ -26,12 +26,13 @@ export class TaskManagerComponent implements OnInit {
     this.updateTasks();
   }
 
-  deleteTaskProgress(task: Task) {
-    this.taskService.deleteTask(task).subscribe(isDeleted => {
-      if (isDeleted) {
+  deleteTaskProcess(task: Task) {
+    this.taskService.deleteTask(task).subscribe(response => {
+      if (response.error == ResponseErrors.NoError) {
         var index = this.tasks.findIndex(t => t == task);
         if (index != -1) {
           this.tasks.splice(index, 1);
+          this.updateTasks();
         }
       } else {
         console.log("No se pudo eliminar la tarea");

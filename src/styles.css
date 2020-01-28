@@ -1,11 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
-.pointer:hover{
-    cursor: pointer;
+.pointer:hover {
+  cursor: pointer;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.cursor-not-allowed:hover {
+  cursor: not-allowed;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-.tasklist{
-    padding-left: unset !important;
-    list-style-type: none;
+.tasklist {
+  padding-left: unset !important;
+  list-style-type: none;
 }
