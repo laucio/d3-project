@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import Task from "../../models/task";
-import { MatDialog } from "@angular/material/dialog";
-import { TaskFormComponent } from "../../components/modals/task-form/task-form.component";
 import { TaskService } from "../../services/task.service";
 import { ResponseErrors } from "../../constants/error";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ChangeStateModal } from "../modals/change-state-modal/change-state-modal.component";
 
 @Component({
   selector: "app-task",
@@ -14,7 +14,10 @@ export class TaskComponent implements OnInit {
   @Input() data: Task;
   @Output() deleteTask = new EventEmitter<Task>();
   @Output() updateTasksView = new EventEmitter<boolean>();
-  constructor(public dialog: MatDialog, private taskSerivce: TaskService) {}
+  constructor(
+    private taskSerivce: TaskService,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit() {}
 
@@ -23,27 +26,34 @@ export class TaskComponent implements OnInit {
   }
 
   changeStateClicked() {
-    const dialogRef = this.dialog.open(TaskFormComponent, {
-      // width: '250px',
-      data: this.data
+    const modalRef = this.modalService.open(ChangeStateModal, {
+      centered: true,
+      size: "sm"
     });
-
-    dialogRef.afterClosed().subscribe(newState => {
-      if (newState != null && newState != undefined) {
-        this.taskSerivce
-          .updateTaskState(this.data.id, newState)
-          .subscribe(response => {
-            if (response.error == ResponseErrors.NoError) {
-              this.data.state = newState;
-              this.updateTasksView.emit(true);
-            } else {
-              alert("An error occured trying to update the state");
-            }
-          }),
-          error => {
-            alert("An Http error occured trying to update the state");
-          };
+    modalRef.componentInstance.state = this.data.state;
+    modalRef.result.then(
+      newState => {
+        if (newState != null && newState != undefined) {
+          this.taskSerivce
+            .updateTaskState(this.data.id, newState)
+            .subscribe(response => {
+              if (response.error == ResponseErrors.NoError) {
+                this.data.state = newState;
+                this.updateTasksView.emit(true);
+              } else {
+                alert("An error occured trying to update the state");
+              }
+            }),
+            error => {
+              alert(
+                `An Http error occured trying to update the state ${error}`
+              );
+            };
+        }
+      },
+      reason => {
+        console.log("change state modal closed, without changes");
       }
-    });
+    );
   }
 }

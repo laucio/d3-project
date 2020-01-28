@@ -3,9 +3,8 @@ import { TaskService } from "../../services/task.service";
 import Task from "../../models/task";
 import { TaskSates } from "../../constants/task";
 import { ResponseErrors } from "../../constants/error";
-
-import { MatDialog } from "@angular/material";
-import { NewTaskFormComponent } from "../modals/new-task-form/new-task-form.component";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { NewTaskModal } from "../modals/new-task-modal/new-task-modal.component";
 
 @Component({
   selector: "app-task-manager",
@@ -17,8 +16,10 @@ export class TaskManagerComponent implements OnInit {
   public planningTasks: Task[];
   public inProgressTasks: Task[];
   public completedTasks: Task[];
-
-  constructor(private taskService: TaskService, public dialog: MatDialog) {}
+  constructor(
+    private taskService: TaskService,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit() {
     this.tasks = this.taskService.getTasks();
@@ -41,26 +42,6 @@ export class TaskManagerComponent implements OnInit {
       };
   }
 
-  createTask(task: Task) {}
-  openCreateTaskModal() {
-    const dialogRef = this.dialog.open(NewTaskFormComponent, {
-      // width: '250px',
-      data: null //Coud we avoid this?
-    });
-
-    dialogRef.afterClosed().subscribe(newTask => {
-      if (newTask != null && newTask != undefined) {
-        // http call que devuelva el  objeto creado
-        this.taskService.createTask(newTask).subscribe(response => {
-          if (response.error == ResponseErrors.NoError) {
-            this.tasks.push(newTask);
-            this.updateTasks();
-          }
-        });
-      }
-    });
-  }
-
   updateTasks() {
     this.planningTasks = this.tasks.filter(t => t.state == TaskSates.Planned);
 
@@ -70,6 +51,29 @@ export class TaskManagerComponent implements OnInit {
 
     this.completedTasks = this.tasks.filter(
       t => t.state == TaskSates.Completed
+    );
+  }
+
+  openCreateTaskModal() {
+    const modalRef = this.modalService.open(NewTaskModal, {
+      centered: true,
+      size: "lg"
+    });
+
+    modalRef.result.then(
+      newTask => {
+        if (newTask != null && newTask != undefined) {
+          this.taskService.createTask(newTask).subscribe(response => {
+            if (response.error == ResponseErrors.NoError) {
+              this.tasks.push(newTask);
+              this.updateTasks();
+            }
+          });
+        }
+      },
+      reason => {
+        console.log("new task modal closed, without changes");
+      }
     );
   }
 }

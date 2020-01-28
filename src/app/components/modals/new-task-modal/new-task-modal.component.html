@@ -1,0 +1,51 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">New Task</h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="activeModal.dismiss(null)"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Task Name</label>
+    <input type="text" class="form-control" [(ngModel)]="newTask.name" />
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea
+      [(ngModel)]="newTask.description"
+      class="form-control"
+      id="description"
+      rows="3"
+    ></textarea>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Select State</label>
+    <select
+      class="form-control"
+      id="exampleFormControlSelect1"
+      (change)="selectState($event)"
+    >
+      <option *ngFor="let s of posibleState" [value]="s">{{
+        s | taskStates
+      }}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Estimate</label>
+    <input type="text" class="form-control" [(ngModel)]="newTask.estimate" />
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-dark"
+    (click)="activeModal.close(newTask)"
+  >
+    Save
+  </button>
+</div>
