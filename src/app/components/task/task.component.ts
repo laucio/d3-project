@@ -14,6 +14,7 @@ export class TaskComponent implements OnInit {
   @Input() data: Task;
   @Output() deleteTask = new EventEmitter<Task>();
   @Output() updateTasksView = new EventEmitter<boolean>();
+
   constructor(
     private taskSerivce: TaskService,
     private modalService: NgbModal
