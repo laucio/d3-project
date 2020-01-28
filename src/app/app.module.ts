@@ -11,6 +11,7 @@ import { GetTotalEstimatePipe } from "./pipes/get-total-estimate.pipe";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ChangeStateModal } from "./components/modals/change-state-modal/change-state-modal.component";
 import { NewTaskModal } from "./components/modals/new-task-modal/new-task-modal.component";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NewTaskModal } from "./components/modals/new-task-modal/new-task-modal.
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent],
