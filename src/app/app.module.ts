@@ -13,6 +13,8 @@ import { ChangeStateModal } from "./components/modals/change-state-modal/change-
 import { NewTaskModal } from "./components/modals/new-task-modal/new-task-modal.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ReactiveFormsModule } from "@angular/forms";
+import { TestComponent } from './components/test/test.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     TaskStatesPipe,
     GetTotalEstimatePipe,
     ChangeStateModal,
-    NewTaskModal
+    NewTaskModal,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     FormsModule,
     NgbModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ScrollingModule
   ],
   providers: [],
   bootstrap: [AppComponent],
