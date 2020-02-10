@@ -15,6 +15,10 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ReactiveFormsModule } from "@angular/forms";
 import { TestComponent } from './components/test/test.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthorizationService } from './services/authorization.service';
+import { ResponseHandlerService } from './services/response-handler.service';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     GetTotalEstimatePipe,
     ChangeStateModal,
     NewTaskModal,
-    TestComponent
+    TestComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,17 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     ReactiveFormsModule,
     ScrollingModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthorizationService,
+    multi: true
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ResponseHandlerService,
+    multi: true
+  }
+],
   bootstrap: [AppComponent],
   entryComponents: [ChangeStateModal, NewTaskModal]
 })
